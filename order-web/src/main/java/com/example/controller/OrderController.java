@@ -2,19 +2,18 @@ package com.example.controller;
 
 
 import com.example.OrderService;
-import com.example.request.OrderRequest;
 import com.example.response.BaseResponse;
 import com.example.response.OrderResponse;
-import com.example.response.ProductResponse;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.example.helper.Urls.ORDER;
-import static com.example.helper.Urls.PARAM;
+import static com.example.helper.Urls.*;
 
 
 @RestController
@@ -23,13 +22,14 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping
-    public OrderResponse createOrder(@RequestBody @Valid OrderRequest orderRequest) {
-        return orderService.createOrder(orderRequest);
-    }
-
     @GetMapping
-    public ResponseEntity<BaseResponse<List<ProductResponse>>> getProductByEmail(@RequestParam(PARAM) String param) {
+    public ResponseEntity<BaseResponse<OrderResponse>> getProductByEmail(@RequestParam(PARAM) String param) {
         return orderService.getOrder(param);
     }
+
+    @GetMapping(value = ALL)
+    public ResponseEntity<BaseResponse<List<OrderResponse>>> getAllOrder() {
+        return orderService.getAllOrder();
+    }
+
 }

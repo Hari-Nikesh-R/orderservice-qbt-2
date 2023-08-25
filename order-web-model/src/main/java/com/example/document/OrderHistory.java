@@ -15,6 +15,7 @@ import java.util.List;
 @Document(collection = "order_history")
 public class OrderHistory {
     @Id
+    private String id;
     private String orderId;
     private List<ProductResponse> availableProduct;
     private OrderStatus orderStatus;

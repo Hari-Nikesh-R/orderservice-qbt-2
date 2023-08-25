@@ -9,6 +9,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface OrderService {
-    OrderResponse createOrder(OrderRequest orderRequest);
-    ResponseEntity<BaseResponse<List<ProductResponse>>> getOrder(String param);
+    ResponseEntity<BaseResponse<OrderResponse>> getOrder(String param);
+    ResponseEntity<BaseResponse<List<OrderResponse>>> getAllOrder();
  }
